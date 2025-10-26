@@ -10,6 +10,8 @@ def main():
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     clock = pygame.time.Clock()
     dt = 0
+    score = 0
+    font = pygame.font.Font(None, 36) # None uses the default Pygame font, 36 is the size
     
     
     updatable_group = pygame.sprite.Group()
@@ -30,12 +32,16 @@ def main():
         asteroid_group.empty()
         shots_group.empty()
         asteroid_field.generate_initial_asteroids(INITIAL_ASTEROIDS_COUNT)
+        nonlocal score
+        score = 0
     # print("Starting Asteroids!")
     # print(f"Screen width: {SCREEN_WIDTH}")
     # print(f"Screen height: {SCREEN_HEIGHT}")
     # print("TURN:", PLAYER_TURN_SPEED)
     while True:
         screen.fill("black")
+        text_surface = font.render(f"Score: {score}", True, "white") # "Score: 123", anti-aliased, white color
+        screen.blit(text_surface, (10, 10)) # Draw at top-left corner (x=10, y=10)
         # player.draw(screen)
         
         updatable_group.update(dt)
@@ -52,6 +58,9 @@ def main():
                 if asteroid.collision(shot):
                     asteroid.split()
                     shot.kill()
+                     
+                    score += 100
+                       
 
 
         for sprite in drawable_group:
