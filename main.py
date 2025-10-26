@@ -28,6 +28,8 @@ def main():
         player.velocity.update(0, 0)
         player.rotation = 0
         asteroid_group.empty()
+        shots_group.empty()
+        asteroid_field.generate_initial_asteroids(INITIAL_ASTEROIDS_COUNT)
     # print("Starting Asteroids!")
     # print(f"Screen width: {SCREEN_WIDTH}")
     # print(f"Screen height: {SCREEN_HEIGHT}")
