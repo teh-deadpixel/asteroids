@@ -34,10 +34,10 @@ def main():
         asteroid_field.generate_initial_asteroids(INITIAL_ASTEROIDS_COUNT)
         nonlocal score
         score = 0
-    # print("Starting Asteroids!")
-    # print(f"Screen width: {SCREEN_WIDTH}")
-    # print(f"Screen height: {SCREEN_HEIGHT}")
-    # print("TURN:", PLAYER_TURN_SPEED)
+    print("Starting Asteroids!")
+    print(f"Screen width: {SCREEN_WIDTH}")
+    print(f"Screen height: {SCREEN_HEIGHT}")
+    print("TURN:", PLAYER_TURN_SPEED)
     while True:
         screen.fill("black")
         text_surface = font.render(f"Score: {score}", True, "white") # "Score: 123", anti-aliased, white color
@@ -46,9 +46,7 @@ def main():
         
         updatable_group.update(dt)
         for asteroid in asteroid_group:
-            if asteroid.radius < 30:  # or whatever "small" is
-                d = player.position.distance_to(asteroid.position)
-                print("small r:", asteroid.radius, "dist:", d, "sum:", player.radius + asteroid.radius)
+            
             if player.collision(asteroid):
                 print("Game over!")
                 pygame.time.delay(600)
